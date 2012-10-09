@@ -1,0 +1,21 @@
+** MobileGates Gemz API **
+** Oren Shepes - 01/10 **
+
+DESCRIPTION
+-----------
+This is the Gemz API. It provides REST and SOAP web services for the Gemz system.
+
+INSTALL
+-------
+svn co http://oren.selfip.net/svn/mobilegates/trunk
+
+mv APP/.htaccess.bak APP/.htaccess
+mv APP/webroot/.htaccess.bak APP/webroot/.htaccess
+
+MySQL
+-----
+Add user 'api_user' w/ passwd 'm0b!l3g@t3s'
+
+DOCUMENTATION
+-------------
+$APP_BASE_URL/docs/api/index.html

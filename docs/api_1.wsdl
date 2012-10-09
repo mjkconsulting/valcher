@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://api.mobilegates.oren.selfip.net/" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://api.mobilegates.oren.selfip.net/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://api.mobilegates.oren.selfip.net/">
+      <xsd:complexType name="GemArray">
+        <xsd:complexContent>
+          <xsd:restriction base="SOAP-ENC:Array">
+            <xsd:attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="tns:Gem[]"/>
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="Gem">
+        <xsd:all>
+          <xsd:element name="author" type="xsd:string"/>
+          <xsd:element name="category" type="xsd:string"/>
+          <xsd:element name="content" type="xsd:string"/>
+          <xsd:element name="created" type="xsd:string"/>
+          <xsd:element name="description" type="xsd:string"/>
+          <xsd:element name="disable_icon" type="xsd:string"/>
+          <xsd:element name="focus_icon" type="xsd:string"/>
+          <xsd:element name="gem_id" type="xsd:int"/>
+          <xsd:element name="price" type="xsd:float"/>
+          <xsd:element name="priority" type="xsd:int"/>
+          <xsd:element name="purchase_url" type="xsd:string"/>
+          <xsd:element name="service_url" type="xsd:string"/>
+          <xsd:element name="status_id" type="xsd:int"/>
+          <xsd:element name="title" type="xsd:string"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="PouchArray">
+        <xsd:complexContent>
+          <xsd:restriction base="SOAP-ENC:Array">
+            <xsd:attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="tns:Pouch[]"/>
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="Pouch">
+        <xsd:all>
+          <xsd:element name="description" type="xsd:string"/>
+          <xsd:element name="name" type="xsd:string"/>
+          <xsd:element name="pouch_id" type="xsd:int"/>
+          <xsd:element name="pouch_set_id" type="xsd:int"/>
+          <xsd:element name="price" type="xsd:float"/>
+          <xsd:element name="priority" type="xsd:int"/>
+          <xsd:element name="status" type="xsd:int"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="UserLogin">
+        <xsd:all>
+          <xsd:element name="errors" type="tns:stringArray"/>
+          <xsd:element name="status" type="xsd:string"/>
+          <xsd:element name="user_id" type="xsd:int"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="stringArray">
+        <xsd:complexContent>
+          <xsd:restriction base="SOAP-ENC:Array">
+            <xsd:attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="xsd:string[]"/>
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="UserRegistrar">
+        <xsd:all>
+          <xsd:element name="address" type="xsd:string"/>
+          <xsd:element name="address_type" type="xsd:int"/>
+          <xsd:element name="cell" type="xsd:string"/>
+          <xsd:element name="city" type="xsd:string"/>
+          <xsd:element name="country" type="xsd:string"/>
+          <xsd:element name="delim" type="xsd:string"/>
+          <xsd:element name="device_id" type="xsd:int"/>
+          <xsd:element name="email" type="xsd:string"/>
+          <xsd:element name="fname" type="xsd:string"/>
+          <xsd:element name="gemz" type="xsd:string"/>
+          <xsd:element name="lat" type="xsd:float"/>
+          <xsd:element name="lname" type="xsd:string"/>
+          <xsd:element name="lng" type="xsd:float"/>
+          <xsd:element name="passwd" type="xsd:string"/>
+          <xsd:element name="phone" type="xsd:string"/>
+          <xsd:element name="state" type="xsd:string"/>
+          <xsd:element name="user_type" type="xsd:int"/>
+          <xsd:element name="username" type="xsd:string"/>
+          <xsd:element name="zipcode" type="xsd:string"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="UserReg">
+        <xsd:all>
+          <xsd:element name="errors" type="tns:stringArray"/>
+          <xsd:element name="status" type="xsd:string"/>
+          <xsd:element name="user_id" type="xsd:int"/>
+        </xsd:all>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <message name="getPouchGemzRequest">
+    <part name="pouch_id" type="xsd:int"/>
+    <part name="user_id" type="xsd:int"/>
+  </message>
+  <message name="getPouchGemzResponse">
+    <part name="getPouchGemzReturn" type="tns:GemArray"/>
+  </message>
+  <message name="getPouchesRequest">
+    <part name="user_id" type="xsd:int"/>
+    <part name="status" type="xsd:int"/>
+  </message>
+  <message name="getPouchesResponse">
+    <part name="getPouchesReturn" type="tns:PouchArray"/>
+  </message>
+  <message name="loginRequest">
+    <part name="email" type="xsd:string"/>
+    <part name="passwd" type="xsd:string"/>
+  </message>
+  <message name="loginResponse">
+    <part name="loginReturn" type="tns:UserLogin"/>
+  </message>
+  <message name="radiotimeRequest">
+    <part name="method" type="xsd:string"/>
+    <part name="options" type="xsd:string"/>
+  </message>
+  <message name="radiotimeResponse">
+    <part name="radiotimeReturn" type="xsd:string"/>
+  </message>
+  <message name="registerUserRequest">
+    <part name="reg" type="tns:UserRegistrar"/>
+  </message>
+  <message name="registerUserResponse">
+    <part name="registerUserReturn" type="tns:UserReg"/>
+  </message>
+  <message name="versionRequest"/>
+  <message name="versionResponse">
+    <part name="versionReturn" type="xsd:string"/>
+  </message>
+  <wsdl:portType name="ApiServicePortType">
+    <wsdl:operation name="getPouchGemz">
+      <wsdl:input message="tns:getPouchGemzRequest"/>
+      <wsdl:output message="tns:getPouchGemzResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="getPouches">
+      <wsdl:input message="tns:getPouchesRequest"/>
+      <wsdl:output message="tns:getPouchesResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="login">
+      <wsdl:input message="tns:loginRequest"/>
+      <wsdl:output message="tns:loginResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="radiotime">
+      <wsdl:input message="tns:radiotimeRequest"/>
+      <wsdl:output message="tns:radiotimeResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="registerUser">
+      <wsdl:input message="tns:registerUserRequest"/>
+      <wsdl:output message="tns:registerUserResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="version">
+      <wsdl:input message="tns:versionRequest"/>
+      <wsdl:output message="tns:versionResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <binding name="ApiServiceBinding" type="tns:ApiServicePortType">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getPouchGemz">
+      <soap:operation soapAction="http://api.mobilegates.oren.selfip.net/service/call/api&amp;method=getPouchGemz" style="rpc"/>
+      <wsdl:input>
+        <soap:body use="literal" namespace="http://api.mobilegates.oren.selfip.net/"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" namespace="http://api.mobilegates.oren.selfip.net/"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPouches">
+      <soap:operation soapAction="http://api.mobilegates.oren.selfip.net/service/call/api&amp;method=getPouches" style="rpc"/>
+      <wsdl:input>
+        <soap:body use="literal" namespace="http://api.mobilegates.oren.selfip.net/"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" namespace="http://api.mobilegates.oren.selfip.net/"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="login">
+      <soap:operation soapAction="http://api.mobilegates.oren.selfip.net/service/call/api&amp;method=login" style="rpc"/>
+      <wsdl:input>
+        <soap:body use="literal" namespace="http://api.mobilegates.oren.selfip.net/"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" namespace="http://api.mobilegates.oren.selfip.net/"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="radiotime">
+      <soap:operation soapAction="http://api.mobilegates.oren.selfip.net/service/call/api&amp;method=radiotime" style="rpc"/>
+      <wsdl:input>
+        <soap:body use="literal" namespace="http://api.mobilegates.oren.selfip.net/"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" namespace="http://api.mobilegates.oren.selfip.net/"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="registerUser">
+      <soap:operation soapAction="http://api.mobilegates.oren.selfip.net/service/call/api&amp;method=registerUser" style="rpc"/>
+      <wsdl:input>
+        <soap:body use="literal" namespace="http://api.mobilegates.oren.selfip.net/"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" namespace="http://api.mobilegates.oren.selfip.net/"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="version">
+      <soap:operation soapAction="http://api.mobilegates.oren.selfip.net/service/call/api&amp;method=version" style="rpc"/>
+      <wsdl:input>
+        <soap:body use="literal" namespace="http://api.mobilegates.oren.selfip.net/"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" namespace="http://api.mobilegates.oren.selfip.net/"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </binding>
+  <wsdl:service name="ApiService">
+    <wsdl:port name="ApiServicePort" binding="tns:ApiServiceBinding">
+      <soap:address location="http://api.mobilegates.oren.selfip.net/service/call/api"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
